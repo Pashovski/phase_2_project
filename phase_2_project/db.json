@@ -1,0 +1,38 @@
+{
+    "Account": [
+        {
+            "id": 1,
+            "balance":10000,
+            "accountNumber":4820,
+            "accountType":"Checking"
+        },
+        {
+            "id": 2,
+            "balance": 5000,
+            "accountNumber": 8096,
+            "accountType": "Savings"
+        },
+        {
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "deposit",
+                    "userNotes": "Happy father's day",
+                    "amount": 300,
+                    "date": "10/4/2021",
+                    "currency": "USD",
+                    "accountNumber": 4820
+                },
+                {
+                    "id": 2,
+                    "type": "deposit",
+                    "userNotes": "Happy mother's day",
+                    "amount": 200,
+                    "date": "10/4/2021",
+                    "currency": "USD",
+                    "accountNumber": 8096                
+                }
+            ]
+        }
+    ]
+}
