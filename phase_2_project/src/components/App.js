@@ -10,10 +10,16 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAccountData(data))
   },[])
+
+  console.log(accountData)
   return (
     <div>
-      <AccountBalance/>
-      <StatementContainer/>
+      {accountData.map(details => {
+        return (
+          <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType}/>
+        )
+      })}
+      <StatementContainer accountData={accountData}/>
     </div>
   );
 }
