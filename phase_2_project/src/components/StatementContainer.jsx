@@ -2,11 +2,20 @@ import React from 'react'
 import StatementCard from './StatementCard'
 import TransactionForm from './TransactionForm'
 
-export default function StatementContainer() {
+export default function StatementContainer({accountData}) {
+
     return (
         <div>
-           <p> I am statment container</p>
-            <StatementCard/>
+            {accountData.map(details => {
+                console.log(details.transactions)
+                // details.transactions.map(trans => {
+                //     return(
+                //         <StatementCard trans={trans}/>
+                //     )
+                // })\
+                return(
+                <StatementCard trans={details.transactions}/>  
+            )})}
             <TransactionForm/>
         </div>
     )

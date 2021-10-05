@@ -10,8 +10,7 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAccountData(data))
   },[])
-
-  console.log(accountData)
+  
   return (
     <div>
       {accountData.map(details => {
