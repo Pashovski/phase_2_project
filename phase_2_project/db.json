@@ -5,13 +5,12 @@
       "balance": 10000,
       "accountNumber": 4820,
       "accountType": "Checking"
-
     },
     {
       "id": 2,
       "balance": 5000,
       "accountNumber": 8096,
-      "accountType": "Savings"    
+      "accountType": "Savings"
     }
   ],
   "transactions": [
@@ -50,6 +49,15 @@
       "date": "10/4/2021",
       "currency": "USD",
       "accountId": 2
+    },
+    {
+      "type": "Withdrawl",
+      "userNotes": "Test",
+      "amount": 450,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 2,
+      "id": 3
     }
   ]
 }

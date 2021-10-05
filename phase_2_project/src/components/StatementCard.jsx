@@ -1,16 +1,13 @@
 import React from 'react'
 
 export default function StatementCard({trans}) {
-    console.log(trans.transactions)
-    const display = trans.map(tran => {
     return(
     <div>
-        <h2>{tran.type}</h2>
-        <h3>{tran.amount}</h3>
-        <p>{tran.userNotes}</p>
-        <p>{tran.date}</p>
-        <p>{tran.currency}</p>
-        <p>{tran.accountNumber}</p>
-    </div>)})
-    return display
-}
+        <h2>{trans.type}</h2>
+        <h3>{trans.amount}</h3>
+        <p>{trans.userNotes}</p>
+        <p>{trans.date}</p>
+        <p>{trans.currency}</p>
+        <p>{trans.accountNumber}</p>
+    </div>)
+    }

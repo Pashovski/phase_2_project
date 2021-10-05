@@ -5,14 +5,23 @@ import StatementContainer from "./StatementContainer";
 
 function App() {
   const [accountData, setAccountData] = useState([])
+  const [transactionData, setTransactionData] = useState([])
+  const [accountId, setAccountId] = useState(1)
 
   useEffect(() => {
-    fetch('http://localhost:3000/Account?_embed=transactions')
+    fetch('http://localhost:4000/transactions')
+    .then(resp => resp.json())
+    .then(data => setTransactionData(data))
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:4000/Account')
     .then(resp => resp.json())
     .then(data => setAccountData(data))
   },[])
+  
   function postTransaction(money){
-    fetch('http://localhost:3000/Account', {
+    fetch('http://localhost:4000/transactions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +30,7 @@ function App() {
     })
     .then(resp => resp.json())
     .then(data => {
-      setAccountData([data, ...accountData])
+      setTransactionData([data, ...transactionData])
     })
   }
   
@@ -29,10 +38,10 @@ function App() {
     <div>
       {accountData.map(details => {
         return (
-          <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType}/>
+          <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType} setAccountId={setAccountId} id={details.id} accountId={accountId}/>
         )
       })}
-      <StatementContainer postTransaction={postTransaction} accountData={accountData}/>
+      <StatementContainer postTransaction={postTransaction} transactionData={transactionData} accountId={accountId} setTransactionData={setTransactionData}/>
     </div>
   );
 }
