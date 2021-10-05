@@ -7,7 +7,7 @@ function App() {
   const [accountData, setAccountData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/Account')
+    fetch('http://localhost:3000/Account?_embed=transactions')
     .then(resp => resp.json())
     .then(data => setAccountData(data))
   },[])
