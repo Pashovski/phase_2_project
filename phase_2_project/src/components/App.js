@@ -21,6 +21,7 @@ function App() {
   },[])
   
   function postTransaction(money){
+    console.log(money)
     fetch('http://localhost:4000/transactions', {
       method: 'POST',
       headers: {
@@ -33,6 +34,38 @@ function App() {
       setTransactionData([data, ...transactionData])
     })
   }
+
+  function patchMinus(tran, newBalance){
+    console.log(newBalance)
+    fetch(`http://localhost:4000/Account/${tran.accountId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({balance: newBalance})
+    })
+    .then(resp => resp.json())
+    .then(updatedAccount => {
+      const updatedAccountList = accountData.map(accData => {
+        if (accData.id === tran.accountId) {
+          return updatedAccount;
+        } else {
+          return accData;
+        }
+      })
+      setAccountData(updatedAccountList)
+    })
+  }
+
+  function patchPlus(tran){
+    fetch(`http://localhost:4000/Account/${tran.accountId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({balance: accountData + tran.amount})
+    })
+  }
   
   return (
     <div>
@@ -41,7 +74,7 @@ function App() {
           <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType} setAccountId={setAccountId} id={details.id} accountId={accountId}/>
         )
       })}
-      <StatementContainer postTransaction={postTransaction} transactionData={transactionData} accountId={accountId} setTransactionData={setTransactionData}/>
+      <StatementContainer postTransaction={postTransaction} transactionData={transactionData} accountId={accountId} setTransactionData={setTransactionData} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData}/>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import React from 'react'
 
-export default function TransactionForm({postTransaction, accountId}) {
+export default function TransactionForm({postTransaction, accountId, patchMinus, patchPlus, accountData}) {
     const [newTransaction, setNewTransaction] = useState({
-        "type":"",
+        "type": "Deposit",
         "userNotes":"",
         "amount": 0,
         "date":"",
@@ -11,10 +11,22 @@ export default function TransactionForm({postTransaction, accountId}) {
         "accountId": +`${accountId}`
     })
 
+    function updateBalance(transactionNew){
+        
+    }   
+
     function handleSubmit(e){
         e.preventDefault()
+        newTransaction.amount = +newTransaction.amount
         postTransaction(newTransaction)
+        if (newTransaction.type === "Deposit"){
 
+            patchPlus(newTransaction)
+        } else {
+            
+            const newMinusValue = accountData.balance - newTransaction.amount
+            patchMinus(newTransaction, newMinusValue)
+        }
     }
 
     function handleChange(e){
@@ -23,6 +35,7 @@ export default function TransactionForm({postTransaction, accountId}) {
             [e.target.name]: e.target.value,
             })
         }
+
 
     return (
         <div>

@@ -60,13 +60,22 @@
       "id": 3
     },
     {
-      "type": "",
+      "type": "Withdawl",
       "userNotes": "Test",
-      "amount": 0,
+      "amount": 789,
       "date": "10/05/2021",
       "currency": "USD",
       "accountId": 1,
       "id": 4
+    },
+    {
+      "type": "Withdawl",
+      "userNotes": "Test",
+      "amount": 789,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 1,
+      "id": 5
     }
   ]
 }
