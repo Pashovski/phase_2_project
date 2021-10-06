@@ -2,13 +2,13 @@
   "Account": [
     {
       "id": 1,
-      "balance": 10000,
+      "balance": 5900,
       "accountNumber": 4820,
       "accountType": "Checking"
     },
     {
       "id": 2,
-      "balance": 5000,
+      "balance": 5900,
       "accountNumber": 8096,
       "accountType": "Savings"
     }
@@ -51,31 +51,40 @@
       "accountId": 2
     },
     {
-      "type": "Withdrawl",
-      "userNotes": "Test",
-      "amount": 450,
+      "type": "Deposit",
+      "userNotes": "Test2",
+      "amount": 9000,
       "date": "10/05/2021",
       "currency": "USD",
-      "accountId": 2,
+      "accountId": 1,
       "id": 3
     },
     {
       "type": "Withdawl",
       "userNotes": "Test",
-      "amount": 789,
+      "amount": 900,
       "date": "10/05/2021",
       "currency": "USD",
       "accountId": 1,
       "id": 4
     },
     {
-      "type": "Withdawl",
+      "type": "Deposit",
       "userNotes": "Test",
-      "amount": 789,
+      "amount": 900,
       "date": "10/05/2021",
       "currency": "USD",
       "accountId": 1,
       "id": 5
+    },
+    {
+      "type": "Deposit",
+      "userNotes": "Test2",
+      "amount": 900,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 2,
+      "id": 6
     }
   ]
 }

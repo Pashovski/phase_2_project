@@ -6,7 +6,7 @@ import StatementContainer from "./StatementContainer";
 function App() {
   const [accountData, setAccountData] = useState([])
   const [transactionData, setTransactionData] = useState([])
-  const [accountId, setAccountId] = useState(1)
+  const [accountId, setAccountId] = useState()
 
   useEffect(() => {
     fetch('http://localhost:4000/transactions')
@@ -36,7 +36,7 @@ function App() {
   }
 
   function patchMinus(tran, newBalance){
-    console.log(newBalance)
+    console.log(tran.accountId)
     fetch(`http://localhost:4000/Account/${tran.accountId}`, {
       method: 'PATCH',
       headers: {
@@ -57,13 +57,24 @@ function App() {
     })
   }
 
-  function patchPlus(tran){
+  function patchPlus(tran, newBalance){
     fetch(`http://localhost:4000/Account/${tran.accountId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({balance: accountData + tran.amount})
+      body: JSON.stringify({balance: newBalance})
+    })
+    .then(resp => resp.json())
+    .then(updatedAccount => {
+      const updatedAccountLists = accountData.map(accData => {
+        if (accData.id === tran.accountId) {
+          return updatedAccount;
+        } else {
+          return accData
+        }
+      })
+      setAccountData(updatedAccountLists)
     })
   }
   

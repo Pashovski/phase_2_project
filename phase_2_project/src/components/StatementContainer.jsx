@@ -11,9 +11,17 @@ export default function StatementContainer({ postTransaction, transactionData, a
     const arrayDateCopy = [...transactionData]
     const sortedDateArray = arrayDateCopy.sort((a, b) => a.date > b.date ? 1 : -1)
 
+    const accountArray = [...accountData]
+    const newBalance = accountArray.filter(account => account.id === accountId).find(details => details > 2
+    )
+
+
+
     return (
         <div>
-            <TransactionForm postTransaction={postTransaction} accountId={accountId} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData}/>
+            {accountData.filter(account => account.id === accountId).map(details => {
+                return(
+            <TransactionForm postTransaction={postTransaction} accountId={accountId} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData} balance={details.balance}/>)})}
             <div>
                 <button onClick={() => setTransactionData(() => {
                     return (sortedTypeArray)

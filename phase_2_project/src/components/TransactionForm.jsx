@@ -1,30 +1,30 @@
 import {useState} from 'react'
 import React from 'react'
 
-export default function TransactionForm({postTransaction, accountId, patchMinus, patchPlus, accountData}) {
+export default function TransactionForm({postTransaction, accountId, patchMinus, patchPlus, accountData, balance}) {
     const [newTransaction, setNewTransaction] = useState({
         "type": "Deposit",
         "userNotes":"",
         "amount": 0,
         "date":"",
         "currency":"",
-        "accountId": +`${accountId}`
+        "accountId": accountId
     })
-
-    function updateBalance(transactionNew){
-        
-    }   
+    console.log(accountId)
+    console.log(newTransaction)
 
     function handleSubmit(e){
+        // console.log(newTransaction)
         e.preventDefault()
         newTransaction.amount = +newTransaction.amount
+        newTransaction.accountId = accountId
         postTransaction(newTransaction)
         if (newTransaction.type === "Deposit"){
-
-            patchPlus(newTransaction)
+            const newPlusValue = balance + newTransaction.amount
+            patchPlus(newTransaction, newPlusValue)
         } else {
             
-            const newMinusValue = accountData.balance - newTransaction.amount
+            const newMinusValue = balance - newTransaction.amount
             patchMinus(newTransaction, newMinusValue)
         }
     }
