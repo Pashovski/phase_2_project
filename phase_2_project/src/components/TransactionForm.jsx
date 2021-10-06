@@ -27,7 +27,7 @@ export default function TransactionForm({postTransaction, accountId}) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <select value={newTransaction.type} onChange={handleChange}>
+                <select name="type" value={newTransaction.type} onChange={handleChange}>
                     <option value="Deposit">Deposit</option>
                     <option value="Withdawl">Withdrawl</option>
                     <option value="Transfer">Transfer</option>
