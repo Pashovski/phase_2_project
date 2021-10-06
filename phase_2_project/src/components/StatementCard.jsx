@@ -6,16 +6,16 @@ export default function StatementCard({trans}) {
 
     return(
     <div>
-        <button onClick={() => setHideTransaction(!hideTransaction)}>{hideTransaction ? "Minimize Transaction" : "Show Transaction"}</button>
             {hideTransaction ? 
             <div>
-                <h2>{trans.type}</h2>
-                <h3>{trans.amount}</h3>
+                <h3>{trans.type}</h3>
+                <h4>${trans.amount}</h4>
                 <p>{trans.userNotes}</p>
                 <p>{trans.date}</p>
                 <p>{trans.currency}</p>
                 <p>{trans.accountNumber}</p> 
             </div>
             : null }
+            <button onClick={() => setHideTransaction(!hideTransaction)}>{hideTransaction ? "Minimize Transaction" : "Show Transaction"}</button>
     </div>)
     }

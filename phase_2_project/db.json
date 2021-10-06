@@ -85,6 +85,24 @@
       "currency": "USD",
       "accountId": 2,
       "id": 6
+    },
+    {
+      "type": "Deposit",
+      "userNotes": "Test2",
+      "amount": 900,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 2,
+      "id": 7
+    },
+    {
+      "type": "Withdawl",
+      "userNotes": "Test3",
+      "amount": 900,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 2,
+      "id": 8
     }
   ]
 }
