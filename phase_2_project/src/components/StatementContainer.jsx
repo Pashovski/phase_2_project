@@ -2,6 +2,8 @@ import React from 'react'
 import StatementCard from './StatementCard'
 import TransactionForm from './TransactionForm'
 
+
+
 export default function StatementContainer({ postTransaction, transactionData, accountId, setTransactionData, patchMinus, patchPlus, accountData}) {
 
     const arrayTypeCopy = [...transactionData]
@@ -11,11 +13,6 @@ export default function StatementContainer({ postTransaction, transactionData, a
     const arrayDateCopy = [...transactionData]
     const sortedDateArray = arrayDateCopy.sort((a, b) => a.date > b.date ? 1 : -1)
 
-    const accountArray = [...accountData]
-    const newBalance = accountArray.filter(account => account.id === accountId).find(details => details > 2
-    )
-
-
 
     return (
         <div>
@@ -23,13 +20,13 @@ export default function StatementContainer({ postTransaction, transactionData, a
                 return(
             <TransactionForm postTransaction={postTransaction} accountId={accountId} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData} balance={details.balance}/>)})}
             <div>
-                <button onClick={() => setTransactionData(() => {
+                <button class="ui primary basic button" onClick={() => setTransactionData(() => {
                     return (sortedTypeArray)
                     })}>Sort by Transaction Type</button>
-                <button onClick={() => setTransactionData(() => {
+                <button class="ui primary basic button" onClick={() => setTransactionData(() => {
                     return (sortedAmountArray)
                     })}>Sort by Amount</button>
-                <button onClick={() => setTransactionData(() => {
+                <button class="ui primary basic button" onClick={() => setTransactionData(() => {
                     return (sortedDateArray)
                     })}>Sort by Date</button>
             </div>

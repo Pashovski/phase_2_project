@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import AccountBalance from "./AccountBalance";
 import StatementContainer from "./StatementContainer";
-// import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import TransferForm from "./TransferForm";
+import {BrowserRouter as Switch, Route, Router} from 'react-router-dom'
+import About from "./About";
+import Header from "./Header";
 
 function App() {
   const [accountData, setAccountData] = useState([])
   const [transactionData, setTransactionData] = useState([])
   const [accountId, setAccountId] = useState()
+  const [otherAccountId, setOtherAccountId] = useState()
 
   useEffect(() => {
     fetch('http://localhost:4000/transactions')
@@ -19,6 +23,7 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAccountData(data))
   },[])
+
   
   function postTransaction(money){
     console.log(money)
@@ -77,15 +82,34 @@ function App() {
       setAccountData(updatedAccountLists)
     })
   }
+
+  function patchBalance(){
+
+  }
   
   return (
     <div>
-      {accountData.map(details => {
-        return (
-          <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType} setAccountId={setAccountId} id={details.id} accountId={accountId}/>
-        )
-      })}
-      <StatementContainer postTransaction={postTransaction} transactionData={transactionData} accountId={accountId} setTransactionData={setTransactionData} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData}/>
+      <Router>
+        <Header/>
+        <Switch>
+          <Route path={'/about'}>
+            <About/>
+          </Route>
+          <Route path={'/home'}>
+            {accountData.map(details => {
+              return (
+                <AccountBalance key={details.id} balance={details.balance} accountNumber={details.accountNumber} accountType={details.accountType} setAccountId={setAccountId} id={details.id} accountId={accountId}/>
+              )
+            })}
+            {accountData.filter(account => account.id === accountId).map(details => {
+                return(
+                  <TransferForm details={details} setOtherAccountId={setOtherAccountId} otherAccountId={otherAccountId} accountId={accountId} patchBalance={patchBalance}/>
+                      )
+              })}
+            <StatementContainer postTransaction={postTransaction} transactionData={transactionData} accountId={accountId} setTransactionData={setTransactionData} patchMinus={patchMinus} patchPlus={patchPlus} accountData={accountData}/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
