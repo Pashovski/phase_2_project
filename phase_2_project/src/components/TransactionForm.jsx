@@ -2,15 +2,11 @@ import {useState} from 'react'
 import React from 'react'
 import { Button, Input, Form, Select, TextArea } from 'semantic-ui-react'
 
-const options = [
-    {key: 'd', text: 'Deposit', value:'Deposit'},
-    {key: 'w', text: 'Withdrawl', value:'Withdrawl'},
-    {key: 't', text: 'Transfer', value:'Transfer'}
-]
+
 
 export default function TransactionForm({postTransaction, accountId, patchMinus, patchPlus, accountData, balance}) {
     const [newTransaction, setNewTransaction] = useState({
-        "type": "",
+        "type": "Deposit",
         "userNotes":"",
         "amount": 0,
         "date":"",
@@ -50,15 +46,20 @@ export default function TransactionForm({postTransaction, accountId, patchMinus,
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group widths='equal'>
-                <Form.Select
+                {/* <Form.Select
                 fluid
                 label='Transaction Type'
                 options={options}
                 placeholder='Transaction Type'
                 name="type"
                 value={newTransaction.type}
-                onChange={handleChange}
-                />
+                onChange={(e) => console.log(e.target.value)}
+                /> */}
+                <Form.Field label='Transaction Type' control='select' name="type" placeholder='Transaction Type' onChange={handleChange}>
+                    <option value='Deposit'>Deposit</option>
+                    <option value='Withdrawl'>Withdrawl</option>
+                    <option value='Transfer'>Transfer</option>
+                </Form.Field>
                 <Form.Input
                 fluid
                 label='Notes'

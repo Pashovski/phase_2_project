@@ -2,13 +2,13 @@
   "Account": [
     {
       "id": 1,
-      "balance": 5900,
+      "balance": null,
       "accountNumber": 4820,
       "accountType": "Checking"
     },
     {
       "id": 2,
-      "balance": 5900,
+      "balance": null,
       "accountNumber": 8096,
       "accountType": "Savings"
     }
