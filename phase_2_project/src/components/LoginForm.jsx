@@ -22,7 +22,7 @@ function LoginForm({Login, errorMessage}){
                     error
                     header='Check login info'
                     content='Some of your login credentials are not matching up, please try again.'
-                    /> : null}
+                    /> : ""}
                     <Form.Input 
                     label='Name'  
                     name='name' 

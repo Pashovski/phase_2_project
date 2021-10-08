@@ -25,17 +25,17 @@ function App() {
 
   const history = useHistory()
   const [user, setUser] = useState({name: "", email:""})
-  const [errorMessage, setErrorMessage] = useState(true)
+  const [errorMessage, setErrorMessage] = useState(false)
 
   const Login = details => {
     console.log(details)
     if (details.email == userLogin.email && details.password == userLogin.password){
       console.log("Logged in")
       history.push('/home')
-      setErrorMessage(true)
+      setErrorMessage(false)
     } else {
       console.log("details do not match")
-      setErrorMessage(false)
+      setErrorMessage(true)
     }
   }
 
