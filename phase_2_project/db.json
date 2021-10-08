@@ -2,13 +2,13 @@
   "Account": [
     {
       "id": 1,
-      "balance": 12700,
+      "balance": 10900,
       "accountNumber": 4820,
       "accountType": "Checking"
     },
     {
       "id": 2,
-      "balance": 10000,
+      "balance": 12700,
       "accountNumber": 8096,
       "accountType": "Savings"
     }
@@ -67,6 +67,15 @@
       "currency": "USD",
       "accountId": 2,
       "id": 4
+    },
+    {
+      "type": "Deposit",
+      "userNotes": "Test",
+      "amount": 900,
+      "date": "10/05/2021",
+      "currency": "USD",
+      "accountId": 1,
+      "id": 5
     }
   ]
 }
