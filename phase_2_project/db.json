@@ -2,13 +2,13 @@
   "Account": [
     {
       "id": 1,
-      "balance": null,
+      "balance": 12700,
       "accountNumber": 4820,
       "accountType": "Checking"
     },
     {
       "id": 2,
-      "balance": null,
+      "balance": 10000,
       "accountNumber": 8096,
       "accountType": "Savings"
     }
@@ -52,57 +52,21 @@
     },
     {
       "type": "Deposit",
-      "userNotes": "Test2",
-      "amount": 9000,
+      "userNotes": "Test",
+      "amount": 900,
       "date": "10/05/2021",
       "currency": "USD",
       "accountId": 1,
       "id": 3
     },
     {
-      "type": "Withdawl",
+      "type": "Deposit",
       "userNotes": "Test",
       "amount": 900,
       "date": "10/05/2021",
       "currency": "USD",
-      "accountId": 1,
+      "accountId": 2,
       "id": 4
-    },
-    {
-      "type": "Deposit",
-      "userNotes": "Test",
-      "amount": 900,
-      "date": "10/05/2021",
-      "currency": "USD",
-      "accountId": 1,
-      "id": 5
-    },
-    {
-      "type": "Deposit",
-      "userNotes": "Test2",
-      "amount": 900,
-      "date": "10/05/2021",
-      "currency": "USD",
-      "accountId": 2,
-      "id": 6
-    },
-    {
-      "type": "Deposit",
-      "userNotes": "Test2",
-      "amount": 900,
-      "date": "10/05/2021",
-      "currency": "USD",
-      "accountId": 2,
-      "id": 7
-    },
-    {
-      "type": "Withdawl",
-      "userNotes": "Test3",
-      "amount": 900,
-      "date": "10/05/2021",
-      "currency": "USD",
-      "accountId": 2,
-      "id": 8
     }
   ]
 }

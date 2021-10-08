@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 function Header(){
     return(
-    <nav>
-        <h3>Logo</h3>
+    <nav className="navbar">
+        <img src="https://www.corttsmoni.com/img/logo.png" alt="Logo" height="100px" align="left"/>
         <ul className="nav-links">
             <Link to='/about'>
                 <li>About</li>
             </Link>
-            <Link to='/'>
+            <Link to='/home'>
                 <li>Home</li>
             </Link>
         </ul>

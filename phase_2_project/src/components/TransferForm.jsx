@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form } from "semantic-ui-react";
 
-function TransferForm({details, setOtherAccountId, otherAccountId, accountId, patchOutgoingBalance, accountData, patchInboundBalance}){
+function TransferForm({details, setOtherAccountId, otherAccountId, accountId, patchOutgoingBalance, accountData}){
     
     const [balanceAccount, setBalanceAccount] = useState()
     const [otherBalanceAccount, setOtherBalanceAccount] = useState()
@@ -10,7 +10,9 @@ function TransferForm({details, setOtherAccountId, otherAccountId, accountId, pa
     const [newTransfer, setNewTransfer] = useState({
         "outboundAccount": "",
         "inboundAccount": "",
-        "amount": ""
+        "amount": "",
+        "accountBalance": 0,
+        "secondAccountBalance": 0
     })
 
 
@@ -19,24 +21,32 @@ function TransferForm({details, setOtherAccountId, otherAccountId, accountId, pa
         e.preventDefault()
         
         if (newTransfer.outboundAccount === "4820"){
-            accountId = 1
-            setOtherAccountId(accountId === 1 ? 2 : 1)
-            setBalanceAccount(accountData[0].balance)
-            setOtherBalanceAccount(accountData[1].balance)
+            const newAccountId = 1
+            const newOtherAccountId = 2
+            newTransfer.amount= +newTransfer.amount
+            newTransfer.accountBalance= accountData[0].balance
+            newTransfer.secondAccountBalance= accountData[1].balance
+            const outgoingBalance = newTransfer.accountBalance - newTransfer.amount
+            const inboundBalance = newTransfer.secondAccountBalance + newTransfer.amount
+            patchOutgoingBalance(newAccountId, outgoingBalance, newOtherAccountId, inboundBalance)
+            // patchInboundBalance(otherAccountId, inboundBalance)
         } else { 
-            accountId = 2
-            setOtherAccountId(accountId === 1 ? 2 : 1)
-            setBalanceAccount(accountData[0].balance)
-            setOtherBalanceAccount(accountData[1].balance)
+            const twoNewAccount = 2
+            const twoOtherNewAccount = 1
+            newTransfer.amount= +newTransfer.amount
+            newTransfer.accountBalance= accountData[1].balance
+            newTransfer.secondAccountBalance= accountData[0].balance
+            const twoOutgoingBalance = newTransfer.accountBalance - newTransfer.amount
+            const twoInboundBalance = newTransfer.secondAccountBalance + newTransfer.amount
+            console.log(twoInboundBalance)
+            patchOutgoingBalance(twoOtherNewAccount, twoInboundBalance, twoNewAccount, twoOutgoingBalance)
+            // patchInboundBalance(otherAccountId, twoInboundBalance)
         }
         newTransfer.amount = +newTransfer.amount
 
-        console.log(newTransfer.amount)
 
-        const outgoingBalance = balanceAccount - newTransfer.amount
-        const inboundBalance = otherBalanceAccount + newTransfer.amount
-        patchOutgoingBalance(accountId, outgoingBalance)
-        patchInboundBalance(otherAccountId, inboundBalance)
+
+
     }
 
     function handleTransferChange(e){

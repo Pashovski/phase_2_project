@@ -14,24 +14,20 @@ export default function TransactionForm({postTransaction, accountId, patchMinus,
         "accountId": accountId
     })
 
-
-
-    console.log(accountId)
-    console.log(newTransaction)
-
     function handleSubmit(e){
         // console.log(newTransaction)
         e.preventDefault()
         newTransaction.amount = +newTransaction.amount
         newTransaction.accountId = accountId
+        console.log()
         postTransaction(newTransaction)
         if (newTransaction.type === "Deposit"){
             const newPlusValue = balance + newTransaction.amount
-            patchPlus(newTransaction, newPlusValue)
+            patchPlus(newTransaction.accountId, newPlusValue)
         } else {
             
             const newMinusValue = balance - newTransaction.amount
-            patchMinus(newTransaction, newMinusValue)
+            patchMinus(newTransaction.accountId, newMinusValue)
         }
     }
 
@@ -58,7 +54,6 @@ export default function TransactionForm({postTransaction, accountId, patchMinus,
                 <Form.Field label='Transaction Type' control='select' name="type" placeholder='Transaction Type' onChange={handleChange}>
                     <option value='Deposit'>Deposit</option>
                     <option value='Withdrawl'>Withdrawl</option>
-                    <option value='Transfer'>Transfer</option>
                 </Form.Field>
                 <Form.Input
                 fluid
